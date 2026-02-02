@@ -1,17 +1,106 @@
-body { 
-    font-family: Arial; 
-    padding: 20px; 
-    background-color: bisque;
-}
-li { 
-    margin-bottom: 10px; 
-}
-button { 
-    margin-left: 5px; 
-}
-
+/* Обнуляем базу */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background-color: #fdf0e0; /* Более нежный оттенок bisque */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h2 {
+    color: #5d4037;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+/* Контейнер для списка (можно добавить в HTML или стилизовать body) */
+#todoList {
+    list-style: none;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+}
+
+li { 
+    background: white;
+    margin-bottom: 12px; 
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    animation: fadeIn 0.3s ease;
+}
+
+span {
+    flex-grow: 1;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Стили для полей ввода */
+input[type="text"] {
+    padding: 10px 15px;
+    border: 2px solid #e0d0b0;
+    border-radius: 25px;
+    outline: none;
+    transition: border-color 0.3s;
+    width: 250px;
+}
+
+input[type="text"]:focus {
+    border-color: #d2b48c;
+}
+
+/* Кнопки */
+button { 
+    margin-left: 8px; 
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    background-color: #d2b48c;
+    color: white;
+    font-weight: bold;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: #bc9d7a;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Кнопка удаления (особый стиль) */
+button[onclick*="deleteTodo"] {
+    background-color: #ff8a80;
+}
+
+button[onclick*="deleteTodo"]:hover {
+    background-color: #ff5252;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+img {
+    margin-top: 20px;
+    border-radius: 15px;
+    max-width: 150px;
+    opacity: 0.8;
 }
