@@ -1,106 +1,98 @@
-/* Обнуляем базу */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    background-color: #fdf0e0; /* Более нежный оттенок bisque */
+body {
+    font-family: sans-serif;
+    background-color: #fcf5eb; /* Светлый приятный фон */
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
     padding: 20px;
 }
 
-h2 {
-    color: #5d4037;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-/* Контейнер для списка (можно добавить в HTML или стилизовать body) */
-#todoList {
-    list-style: none;
+.container {
     width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
+    max-width: 500px; /* Ограничение ширины для ПК */
+    text-align: center;
 }
 
-li { 
-    background: white;
-    margin-bottom: 12px; 
-    padding: 12px;
-    border-radius: 8px;
+h2 {
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Блок ввода */
+.input-block {
     display: flex;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    animation: fadeIn 0.3s ease;
+    gap: 10px;
+    margin-bottom: 30px; /* Отступ снизу от ввода до списка */
 }
 
-span {
-    flex-grow: 1;
-    color: #333;
-    font-size: 16px;
-}
-
-/* Стили для полей ввода */
 input[type="text"] {
-    padding: 10px 15px;
-    border: 2px solid #e0d0b0;
-    border-radius: 25px;
+    flex: 1; /* Инпут забирает всё свободное место */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
     outline: none;
-    transition: border-color 0.3s;
-    width: 250px;
-}
-
-input[type="text"]:focus {
-    border-color: #d2b48c;
 }
 
 /* Кнопки */
-button { 
-    margin-left: 8px; 
-    padding: 8px 15px;
+button {
+    padding: 10px 15px;
     cursor: pointer;
-    border: none;
-    border-radius: 20px;
-    background-color: #d2b48c;
-    color: white;
-    font-weight: bold;
-    transition: all 0.2s;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fff;
+    transition: 0.2s;
 }
 
 button:hover {
-    background-color: #bc9d7a;
-    transform: translateY(-1px);
+    background: #f0f0f0;
 }
 
-button:active {
-    transform: translateY(1px);
+/* Список задач */
+#todoList {
+    list-style: none;
+    text-align: left;
 }
 
-/* Кнопка удаления (особый стиль) */
-button[onclick*="deleteTodo"] {
-    background-color: #ff8a80;
+li {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px; /* Отступ между задачами */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-button[onclick*="deleteTodo"]:hover {
-    background-color: #ff5252;
+/* Чтобы кнопки внутри списка не слипались */
+li button {
+    margin-left: 5px;
+    font-size: 12px;
 }
 
-/* Анимация появления */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Адаптация под мобилки */
+@media (max-width: 480px) {
+    .input-block {
+        flex-direction: column; /* На очень узких экранах инпут и кнопка друг под другом */
+    }
+    
+    li {
+        flex-wrap: wrap; /* Если текст задачи длинный, кнопки уйдут вниз */
+    }
+    
+    span {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }
 
 img {
-    margin-top: 20px;
-    border-radius: 15px;
-    max-width: 150px;
-    opacity: 0.8;
+    margin-top: 40px;
+    max-width: 100px;
+    border-radius: 10px;
 }
