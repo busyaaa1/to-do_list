@@ -1,3 +1,11 @@
+:root {
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --primary: #6c5ce7;
+    --danger: #ff7675;
+    --text: #2d3436;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -5,94 +13,118 @@
 }
 
 body {
-    font-family: sans-serif;
-    background-color: #fcf5eb; /* Светлый приятный фон */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text);
     display: flex;
     justify-content: center;
-    padding: 20px;
+    padding: 40px 20px;
 }
 
-.container {
+.app-container {
     width: 100%;
-    max-width: 500px; /* Ограничение ширины для ПК */
+    max-width: 450px;
     text-align: center;
 }
 
 h2 {
-    margin-bottom: 20px;
-    color: #444;
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
-/* Блок ввода */
-.input-block {
+/* Группа ввода */
+.input-group {
     display: flex;
-    gap: 10px;
-    margin-bottom: 30px; /* Отступ снизу от ввода до списка */
+    gap: 8px;
+    margin-bottom: 30px;
 }
 
 input[type="text"] {
-    flex: 1; /* Инпут забирает всё свободное место */
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #dfe6e9;
+    border-radius: 12px;
     outline: none;
+    transition: 0.2s;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.1);
 }
 
 /* Кнопки */
 button {
-    padding: 10px 15px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background: #fff;
-    transition: 0.2s;
+    font-weight: 600;
+    transition: 0.2s active, 0.2s transform;
+    background: #eee;
+}
+
+.btn-add {
+    background: var(--primary);
+    color: white;
 }
 
 button:hover {
-    background: #f0f0f0;
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 /* Список задач */
 #todoList {
     list-style: none;
-    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Margin между элементами */
 }
 
 li {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 10px; /* Отступ между задачами */
-    border-radius: 8px;
+    background: var(--card-bg);
+    padding: 14px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    animation: slideIn 0.3s ease-out;
 }
 
-/* Чтобы кнопки внутри списка не слипались */
+li span {
+    flex: 1;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+/* Стилизация кнопок внутри li (находим по тексту, так как классов нет в JS) */
 li button {
-    margin-left: 5px;
-    font-size: 12px;
+    font-size: 11px;
+    padding: 6px 10px;
 }
 
-/* Адаптация под мобилки */
-@media (max-width: 480px) {
-    .input-block {
-        flex-direction: column; /* На очень узких экранах инпут и кнопка друг под другом */
+/* Адаптив под мобилки */
+@media (max-width: 400px) {
+    .input-group {
+        flex-direction: column;
     }
     
     li {
-        flex-wrap: wrap; /* Если текст задачи длинный, кнопки уйдут вниз */
-    }
-    
-    span {
-        width: 100%;
-        margin-bottom: 10px;
+        flex-wrap: wrap;
     }
 }
 
-img {
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer-decor img {
     margin-top: 40px;
-    max-width: 100px;
-    border-radius: 10px;
+    width: 80px;
+    filter: grayscale(1);
+    opacity: 0.5;
 }
